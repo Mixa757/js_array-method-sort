@@ -6,6 +6,15 @@
  */
 function applyCustomSort() {
   Array.prototype.sort2 = function (compareFunction) {
+    if (
+      compareFunction !== undefined &&
+      typeof compareFunction !== 'function'
+    ) {
+      throw new TypeError(
+        'The comparison function must be either a function or undefined',
+      );
+    }
+
     const compare =
       typeof compareFunction === 'function'
         ? compareFunction
