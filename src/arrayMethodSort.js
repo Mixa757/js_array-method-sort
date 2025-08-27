@@ -19,6 +19,11 @@ function applyCustomSort() {
       typeof compareFunction === 'function'
         ? compareFunction
         : (a, b) => {
+            // спеціально обробляємо undefined (включаючи "дірки")
+            if (a === undefined && b === undefined) return 0;
+            if (a === undefined) return 1; // a в кінець
+            if (b === undefined) return -1; // b в кінець
+
             const A = String(a);
             const B = String(b);
 
